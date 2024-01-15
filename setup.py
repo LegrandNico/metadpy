@@ -57,6 +57,7 @@ if __name__ == "__main__":
         long_description=open("README.md", encoding="utf-8").read(),
         long_description_content_type="text/markdown",
         license="GPL-3.0",
+        url="https://github.com/LegrandNico/metadpy",
         version=get_version("metadpy/__init__.py"),
         install_requires=get_requirements(),
         include_package_data=True,
