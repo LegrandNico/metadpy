@@ -1,0 +1,888 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Fitting the model &#8212; metadpy 0.1.2 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=bd9e20870c6007c4c509" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=bd9e20870c6007c4c509" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=bd9e20870c6007c4c509"></script>
+
+    <script src="../_static/documentation_options.js?v=92734c54"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'examples/2-Fitting the model-MLE';</script>
+    <link rel="icon" href="../_static/logo.svg"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Single subject" href="3-Comparison%20with%20the%20hmeta-d%20toolbox.html" />
+    <link rel="prev" title="What metacognition looks like?" href="1-What%20metacognition%20looks%20like.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <header>
+  
+    <div class="bd-header navbar navbar-expand-lg bd-navbar">
+<div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+    <span class="fa-solid fa-bars"></span>
+  </label>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.svg" class="logo__image only-light" alt=""/>
+    <script>document.write(`<img src="../_static/logo.svg" class="logo__image only-dark" alt=""/>`);</script>
+  
+  
+    <p class="title logo__title">metadpy</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav class="navbar-nav">
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../api.html">
+                        API
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="../tutorials.html">
+                        Tutorials
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../cite.html">
+                        Cite
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../references.html">
+                        References
+                      </a>
+                    </li>
+                
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/embodied-computation-group/metadpy" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fab fa-github-square fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/visceral_mind" title="Twitter" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fab fa-twitter-square fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://pypi.org/project/metadpy/" title="Pypi" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fas fa-box fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">Pypi</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+    <label class="sidebar-toggle secondary-toggle" for="__secondary" tabindex="0">
+      <span class="fa-solid fa-outdent"></span>
+    </label>
+  
+</div>
+
+    </div>
+  
+  </header>
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          <div class="navbar-item">
+<nav class="navbar-nav">
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../api.html">
+                        API
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="../tutorials.html">
+                        Tutorials
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../cite.html">
+                        Cite
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../references.html">
+                        References
+                      </a>
+                    </li>
+                
+  </ul>
+</nav></div>
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/embodied-computation-group/metadpy" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fab fa-github-square fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/visceral_mind" title="Twitter" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fab fa-twitter-square fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://pypi.org/project/metadpy/" title="Pypi" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fas fa-box fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">Pypi</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumb">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../tutorials.html" class="nav-link">How-to</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page">Fitting the model</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="fitting-the-model">
+<span id="tutorial-2"></span><h1>Fitting the model<a class="headerlink" href="#fitting-the-model" title="Link to this heading">#</a></h1>
+<p>Author: Nicolas Legrand <a class="reference external" href="mailto:nicolas&#46;legrand&#37;&#52;&#48;cfin&#46;au&#46;dk">nicolas<span>&#46;</span>legrand<span>&#64;</span>cfin<span>&#46;</span>au<span>&#46;</span>dk</a><br />
+Adapted from the tutorial proposed by the HMeta-d toolbox: https://github.com/metacoglab/HMeta-d/tree/master/CPC_metacog_tutorial</p>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%capture</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="k">if</span> <span class="s1">&#39;google.colab&#39;</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">modules</span><span class="p">:</span>
+    <span class="err">!</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">metadpy</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">from</span> <span class="nn">metadpy.mle</span> <span class="kn">import</span> <span class="n">fit_metad</span><span class="p">,</span> <span class="n">metad</span>
+<span class="kn">from</span> <span class="nn">metadpy.plotting</span> <span class="kn">import</span> <span class="n">plot_confidence</span><span class="p">,</span> <span class="n">plot_roc</span>
+<span class="kn">from</span> <span class="nn">metadpy.sdt</span> <span class="kn">import</span> <span class="n">roc_auc</span>
+<span class="kn">from</span> <span class="nn">metadpy.utils</span> <span class="kn">import</span> <span class="p">(</span><span class="n">responseSimulation</span><span class="p">,</span> <span class="n">trials2counts</span><span class="p">,</span>
+                           <span class="n">type2_SDT_simuation</span><span class="p">)</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">set_context</span><span class="p">(</span><span class="s2">&quot;talk&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="calculating-metacognition-the-type-2-roc-curve">
+<h2>Calculating metacognition: the type-2 ROC curve<a class="headerlink" href="#calculating-metacognition-the-type-2-roc-curve" title="Link to this heading">#</a></h2>
+<p>Another way of visualising type 2 performance (that will help us towards quantifying metacognition) is to plot the data using a <em>Reciever Operating Characteristic</em> (ROC) curve. Here, we plot the distribution of correct responses against the distribution of incorrect responses. The resulting type2ROC curve tells us how separate these confidence distributions are, and thus the area under the curve can be used as a measure of the level of type 2 performance. We will go through this now.</p>
+<section id="set-up-the-parameters">
+<h3>Set up the parameters<a class="headerlink" href="#set-up-the-parameters" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d</span> <span class="o">=</span> <span class="mi">2</span>  <span class="c1"># Set task performance(d&#39;)</span>
+<span class="n">c</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># Set task bias (c)</span>
+<span class="n">nTrials</span> <span class="o">=</span> <span class="mi">1000</span>  <span class="c1"># Set the number of trials performed</span>
+<span class="n">nRatings</span> <span class="o">=</span> <span class="mi">4</span>  <span class="c1"># Choose the rating scale to use - any will do</span>
+<span class="n">lowNoise</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># Set a low value for confidence noise</span>
+<span class="n">highNoise</span> <span class="o">=</span> <span class="mf">0.8</span>  <span class="c1"># Set a high value for confidence noise</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="simulate-the-responses-for-low-and-high-confidence-noise">
+<h3>Simulate the responses for low and high confidence noise<a class="headerlink" href="#simulate-the-responses-for-low-and-high-confidence-noise" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dHigh_nR_S1</span><span class="p">,</span> <span class="n">dHigh_nR_S2</span> <span class="o">=</span> <span class="n">type2_SDT_simuation</span><span class="p">(</span>
+    <span class="n">d</span><span class="o">=</span><span class="n">d</span><span class="p">,</span> <span class="n">noise</span><span class="o">=</span><span class="n">highNoise</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">c</span><span class="p">,</span> <span class="n">nRatings</span><span class="o">=</span><span class="n">nRatings</span><span class="p">,</span> <span class="n">nTrials</span><span class="o">=</span><span class="n">nTrials</span>
+<span class="p">)</span>
+<span class="n">dLow_nR_S1</span><span class="p">,</span> <span class="n">dLow_nR_S2</span> <span class="o">=</span> <span class="n">type2_SDT_simuation</span><span class="p">(</span>
+    <span class="n">d</span><span class="o">=</span><span class="n">d</span><span class="p">,</span> <span class="n">noise</span><span class="o">=</span><span class="n">lowNoise</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">c</span><span class="p">,</span> <span class="n">nRatings</span><span class="o">=</span><span class="n">nRatings</span><span class="p">,</span> <span class="n">nTrials</span><span class="o">=</span><span class="n">nTrials</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="plot-the-confidence-results-for-the-two-simulations">
+<h3>Plot the confidence results for the two simulations<a class="headerlink" href="#plot-the-confidence-results-for-the-two-simulations" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">title</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span>
+    <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[[</span><span class="n">dHigh_nR_S1</span><span class="p">,</span> <span class="n">dHigh_nR_S2</span><span class="p">],</span> <span class="p">[</span><span class="n">dLow_nR_S1</span><span class="p">,</span> <span class="n">dLow_nR_S2</span><span class="p">]],</span> <span class="p">[</span><span class="s2">&quot;High&quot;</span><span class="p">,</span> <span class="s2">&quot;Low&quot;</span><span class="p">]</span>
+<span class="p">):</span>
+    <span class="n">plot_confidence</span><span class="p">(</span><span class="n">nR_S1</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">nR_S2</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">title</span><span class="si">}</span><span class="s2"> confidence noise&quot;</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">despine</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/eccd4c6518a0929d629e7888acf17a0e2133f84adaca0879a9e1ab95324ad8c9.png" src="../_images/eccd4c6518a0929d629e7888acf17a0e2133f84adaca0879a9e1ab95324ad8c9.png" />
+</div>
+</div>
+</section>
+<section id="now-plot-the-observed-type2-data-in-a-type2roc-curve">
+<h3>Now plot the observed type2 data in a type2ROC curve<a class="headerlink" href="#now-plot-the-observed-type2-data-in-a-type2roc-curve" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">title</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span>
+    <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[[</span><span class="n">dHigh_nR_S1</span><span class="p">,</span> <span class="n">dHigh_nR_S2</span><span class="p">],</span> <span class="p">[</span><span class="n">dLow_nR_S1</span><span class="p">,</span> <span class="n">dLow_nR_S2</span><span class="p">]],</span> <span class="p">[</span><span class="s2">&quot;High&quot;</span><span class="p">,</span> <span class="s2">&quot;Low&quot;</span><span class="p">]</span>
+<span class="p">):</span>
+    <span class="n">plot_roc</span><span class="p">(</span><span class="n">nR_S1</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">nR_S2</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">title</span><span class="si">}</span><span class="s2"> confidence noise&quot;</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">despine</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/af24dbf314fc78e742fa00f3ff71a8ee1ba9c40c5a854d8c2deb4ef08461247e.png" src="../_images/af24dbf314fc78e742fa00f3ff71a8ee1ba9c40c5a854d8c2deb4ef08461247e.png" />
+</div>
+</div>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>We can now compare the two types of figures (confidence distributions and type2ROC curves) from the same data to see what the type2ROC curve is plotting. The first point above zero on the curve (second from the left) is the proportion of the correct responses that used the highest confidence rating (i.e. 4 on the confidence scale) plotted against the proportion of incorrect responses that used the highest confidence rating. The next point to the right of this is the proportion of the correct responses that used the highest two confidence ratings (i.e. 3 and 4) against the the proportion of incorrect responses that used the highest two confidence ratings. This continues until we reach 1 in the top right corner of the curve, where we have accounted for all of the correct and incorrect responses across all of the confidence ratings. You can see here that when there is lower confidence noise, the type2ROC curve has a larger ‘bow’ - it extends closer towards the top left corner of the graph. This is because there is a greater proportion of the correct responses that use the higher confidence ratings, compared to the proportion of the incorrect responses that used the higher ratings. If metacognition was perfect, and a participant only used the higher rating scores when they were correct and the lower rating scores when they were incorrect (and never mixed them), the curve would be a right angle in the top left corner. If metacognition was zero, the curve would be flat and lie on the diagonal dotted line, as there would be approximately the same proportion of correct and incorrect responses no matter what confidence rating was used.</p>
+</div>
+<p>Now we will calculate the area under each of the type2ROC curves:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Low confidence AUC: </span><span class="si">{</span><span class="n">roc_auc</span><span class="p">(</span><span class="n">nR_S1</span><span class="o">=</span><span class="n">dLow_nR_S1</span><span class="p">,</span><span class="w"> </span><span class="n">nR_S2</span><span class="o">=</span><span class="n">dLow_nR_S2</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;High confidence AUC: </span><span class="si">{</span><span class="n">roc_auc</span><span class="p">(</span><span class="n">nR_S1</span><span class="o">=</span><span class="n">dHigh_nR_S1</span><span class="p">,</span><span class="w"> </span><span class="n">nR_S2</span><span class="o">=</span><span class="n">dHigh_nR_S2</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Low confidence AUC: 0.8155379488146891
+High confidence AUC: 0.6827111503037429
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>Now you should be able to see that the area under the type2ROC curve with lower confidence noise is larger than when the data are produced with higher confidence noise. This metric is often used as an absolute measure of metacognition.</p>
+</div>
+<div class="highlight-{Exercise notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<ul class="simple">
+<li><p>You can plot the ROC curve using <code class="docutils literal notranslate"><span class="pre">metadpy.plotting.plot_roc()</span></code></p></li>
+<li><p>You can calculate the area using <code class="docutils literal notranslate"><span class="pre">metadpy.std.roc_auc()</span></code></p></li>
+</ul>
+</div>
+</section>
+</section>
+<section id="fitting-the-model-meta-d">
+<h2>Fitting the model: meta-d’<a class="headerlink" href="#fitting-the-model-meta-d" title="Link to this heading">#</a></h2>
+<p>In this step we will consider how we can quantify metacognition using meta-d’ rather than the area under a type2ROC curve. Because meta-d’ is calculated in the same units as d’, we can get rid of the effect of type 1 performance (d’) by simply creating a ratio of meta-d’ / d’, which we call the Mratio. The Mratio is then a ‘relative’ measure of metacognition, and is independent of task performance. For full details of the model please refer to the paper by <span id="id1"></span>. The key here is actually the direct relationship between type 1 and type 2 performance that we explored in steps 2 and 3, where we can predict what the type2ROC curve <em>should</em> look like for a certain type 1 d’ and bias (if no information was lost or gained between type 1 and type 2 performance). Therefore, if we take the observed type2ROC curve, we can theoretically estimate what level of d’ would cause the observed type 2 performance… And we call this meta-d’! (For details on the relationship between type 1 and type 2 performance, see <span id="id2">Galvin <em>et al.</em> [<a class="reference internal" href="../references.html#id6" title="Susan J. Galvin, John V. Podd, Vit Drga, and John Whitmore. Type 2 tasks in the theory of signal detectability: discrimination between correct and incorrect decisions. Psychonomic Bulletin &amp;amp$\mathsemicolon $ Review, 10(4):843–876, December 2003. URL: https://doi.org/10.3758/bf03196546, doi:10.3758/bf03196546.">2003</a>]</span>. Here we will plot the observed and estimated confidence values and type2ROC curves for our simulated data with different levels of metacognition, and take a closer look at the model values for meta-d.</p>
+<p><strong>Set up the parameters:</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d</span> <span class="o">=</span> <span class="mi">2</span>  <span class="c1"># Set task performance (d&#39;)</span>
+<span class="n">c</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># Set task bias (c)</span>
+<span class="n">nTrials</span> <span class="o">=</span> <span class="mi">1000</span>  <span class="c1"># Set the number of trials performed</span>
+<span class="n">nRatings</span> <span class="o">=</span> <span class="mi">4</span>  <span class="c1"># Choose the rating scale to use</span>
+<span class="n">metadLow</span><span class="p">,</span> <span class="n">metadHigh</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="mi">1</span><span class="p">,</span>
+    <span class="mi">2</span><span class="p">,</span>
+<span class="p">)</span>  <span class="c1"># This time we will simulate with different values of meta-d&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Simulate the responses for low and high metacognition:</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">low_noise_df</span> <span class="o">=</span> <span class="n">responseSimulation</span><span class="p">(</span>
+    <span class="n">d</span><span class="o">=</span><span class="n">d</span><span class="p">,</span> <span class="n">metad</span><span class="o">=</span><span class="n">metadLow</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">c</span><span class="p">,</span> <span class="n">nRatings</span><span class="o">=</span><span class="n">nRatings</span><span class="p">,</span> <span class="n">nTrials</span><span class="o">=</span><span class="n">nTrials</span>
+<span class="p">)</span>
+<span class="n">high_noise_df</span> <span class="o">=</span> <span class="n">responseSimulation</span><span class="p">(</span>
+    <span class="n">d</span><span class="o">=</span><span class="n">d</span><span class="p">,</span> <span class="n">metad</span><span class="o">=</span><span class="n">metadHigh</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">c</span><span class="p">,</span> <span class="n">nRatings</span><span class="o">=</span><span class="n">nRatings</span><span class="p">,</span> <span class="n">nTrials</span><span class="o">=</span><span class="n">nTrials</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Now we will fit the model for meta-d’:</strong></p>
+<p><strong>NOTE:</strong> nR_S1 and nR_S2 are the counts of the responses to stimulus 1 (nR_S1) and stimulus 2 (nR_S2) for each confidence level. We can compute this using the function py:func:<code class="docutils literal notranslate"><span class="pre">metadpy.utils.trials2counts()</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">low_noise_nR_S1</span><span class="p">,</span> <span class="n">low_noise_nR_S2</span> <span class="o">=</span> <span class="n">trials2counts</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">low_noise_df</span><span class="p">,</span> <span class="n">nRatings</span><span class="o">=</span><span class="n">nRatings</span><span class="p">)</span>
+<span class="n">high_noise_nR_S1</span><span class="p">,</span> <span class="n">high_noise_nR_S2</span> <span class="o">=</span> <span class="n">trials2counts</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">high_noise_df</span><span class="p">,</span> <span class="n">nRatings</span><span class="o">=</span><span class="n">nRatings</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fitLowNoise</span> <span class="o">=</span> <span class="n">fit_metad</span><span class="p">(</span><span class="n">low_noise_nR_S1</span><span class="p">,</span> <span class="n">low_noise_nR_S2</span><span class="p">,</span> <span class="n">nRatings</span><span class="o">=</span><span class="n">nRatings</span><span class="p">)</span>
+<span class="n">fitHighNoise</span> <span class="o">=</span> <span class="n">fit_metad</span><span class="p">(</span><span class="n">high_noise_nR_S1</span><span class="p">,</span> <span class="n">high_noise_nR_S2</span><span class="p">,</span> <span class="n">nRatings</span><span class="o">=</span><span class="n">nRatings</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Plot the model estimation of type 2 performance with high metacognition:</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">plot_confidence</span><span class="p">(</span><span class="n">high_noise_nR_S1</span><span class="p">,</span> <span class="n">high_noise_nR_S2</span><span class="p">,</span> <span class="n">fitModel</span><span class="o">=</span><span class="n">fitHighNoise</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">plot_roc</span><span class="p">(</span><span class="n">high_noise_nR_S1</span><span class="p">,</span> <span class="n">high_noise_nR_S2</span><span class="p">,</span> <span class="n">fitModel</span><span class="o">=</span><span class="n">fitHighNoise</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">despine</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/206e9ccf447f19915eccace685ad65ae2fd2cef4dae59ededdc8f88734154fa0.png" src="../_images/206e9ccf447f19915eccace685ad65ae2fd2cef4dae59ededdc8f88734154fa0.png" />
+</div>
+</div>
+<p><strong>Now plot the same figures for the model estimation of type 2 performance with low metacognition:</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">plot_confidence</span><span class="p">(</span><span class="n">low_noise_nR_S1</span><span class="p">,</span> <span class="n">low_noise_nR_S2</span><span class="p">,</span> <span class="n">fitModel</span><span class="o">=</span><span class="n">fitLowNoise</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">plot_roc</span><span class="p">(</span><span class="n">low_noise_nR_S1</span><span class="p">,</span> <span class="n">low_noise_nR_S2</span><span class="p">,</span> <span class="n">fitModel</span><span class="o">=</span><span class="n">fitLowNoise</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">despine</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/63998c8a5851b243baf537d8ec0aa7ddfd723aafc17b114451de9105a7800f0f.png" src="../_images/63998c8a5851b243baf537d8ec0aa7ddfd723aafc17b114451de9105a7800f0f.png" />
+</div>
+</div>
+<div class="highlight-{hint}You notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="highlight-{Exercise notranslate"><div class="highlight"><pre><span></span>How do the estimated (fit) Mratio values compare to the simulated Mratio values that we used?
+HINT: You can find the fitted Mratio im sim4.highMetad.fit, but you will need to calculate the simulated Mratio.
+Next, run this whole section again to simulate new data from the same parameters and re-fit the model. Do you get exactly the same meta-d&#39; and Mratio values as before? Why / why not?
+</pre></div>
+</div>
+</section>
+<section id="fitting-the-model-parameter-recovery">
+<h2>Fitting the model: parameter recovery<a class="headerlink" href="#fitting-the-model-parameter-recovery" title="Link to this heading">#</a></h2>
+<p>We saw in exercise 4 that the meta-d model we are using doesn’t give us a perfect estimation of meta-d. We will now take a closer look at how well this model is able to recover meta-d values, using 20 simulations at different levels of meta-d.</p>
+<section id="id3">
+<h3>Set up the parameters<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d</span> <span class="o">=</span> <span class="mi">2</span>  <span class="c1"># Set task performance (d&#39;)</span>
+<span class="n">d_sigma</span> <span class="o">=</span> <span class="mf">0.1</span>  <span class="c1"># Include some between-subject variability</span>
+<span class="n">c</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># Set task bias (c)</span>
+<span class="n">c_sigma</span> <span class="o">=</span> <span class="mf">0.1</span>  <span class="c1"># Include some between-subject variability</span>
+<span class="n">nTrials</span> <span class="o">=</span> <span class="mi">1000</span>  <span class="c1"># Set the number of trials performed</span>
+<span class="n">nRatings</span> <span class="o">=</span> <span class="mi">4</span>  <span class="c1"># Choose the rating scale to use</span>
+<span class="n">nSims</span> <span class="o">=</span> <span class="mi">40</span>  <span class="c1"># Specify the number of simulations at each meta-d value</span>
+<span class="n">meta_d</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.25</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">]</span>  <span class="c1"># Specify a range of of meta-d values</span>
+<span class="n">meta_d_sigma</span> <span class="o">=</span> <span class="mf">0.1</span>  <span class="c1"># Include some between-subject variability</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="simulate-the-responses-and-fit-the-model-for-different-levels-of-metacognition">
+<h3>Simulate the responses and fit the model for different levels of metacognition<a class="headerlink" href="#simulate-the-responses-and-fit-the-model-for-different-levels-of-metacognition" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([])</span>
+<span class="k">for</span> <span class="n">this_meta_d</span> <span class="ow">in</span> <span class="n">meta_d</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">n_trials</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">50</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">1000</span><span class="p">]:</span>
+        <span class="k">for</span> <span class="n">this_simulation</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nSims</span><span class="p">):</span>
+
+            <span class="c1"># Generate dprime values</span>
+            <span class="n">sim_d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">d_sigma</span><span class="p">)</span>
+
+            <span class="c1"># Generate bias values</span>
+            <span class="n">sim_c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">c_sigma</span><span class="p">)</span>
+
+            <span class="c1"># Generate meta-d values</span>
+            <span class="n">sim_meta_d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">this_meta_d</span><span class="p">,</span> <span class="n">meta_d_sigma</span><span class="p">)</span>
+
+            <span class="c1"># Simulate dataframe of trials</span>
+            <span class="n">simulation_df</span> <span class="o">=</span> <span class="n">responseSimulation</span><span class="p">(</span>
+                <span class="n">d</span><span class="o">=</span><span class="n">sim_d</span><span class="p">,</span> <span class="n">metad</span><span class="o">=</span><span class="n">sim_meta_d</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">sim_c</span><span class="p">,</span> <span class="n">nRatings</span><span class="o">=</span><span class="n">nRatings</span><span class="p">,</span> <span class="n">nTrials</span><span class="o">=</span><span class="n">n_trials</span><span class="p">,</span>
+            <span class="p">)</span>
+
+            <span class="n">metad_df</span> <span class="o">=</span> <span class="n">metad</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">simulation_df</span><span class="p">,</span> <span class="n">nRatings</span><span class="o">=</span><span class="n">nRatings</span><span class="p">)</span>
+
+            <span class="n">metad_df</span><span class="p">[</span><span class="s2">&quot;n_simulation&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">this_simulation</span>
+            <span class="n">metad_df</span><span class="p">[</span><span class="s2">&quot;true_meta_d&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">this_meta_d</span>
+            <span class="n">metad_df</span><span class="p">[</span><span class="s2">&quot;n_trials&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">n_trials</span>
+
+            <span class="c1"># Store results</span>
+            <span class="n">results_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">results_df</span><span class="p">,</span> <span class="n">metad_df</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">stripplot</span><span class="p">(</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">results_df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;true_meta_d&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;meta_d&quot;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;n_trials&quot;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">dodge</span><span class="o">=</span><span class="kc">True</span>
+    <span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Meta-d&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Estimated Meta-d&quot;</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">despine</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/be5a05e3f1428911300952b812e9069270b53cde3524e83e069b91dafda788c2.png" src="../_images/be5a05e3f1428911300952b812e9069270b53cde3524e83e069b91dafda788c2.png" />
+</div>
+</div>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>Here we can see that there is some variance in the model fits for each value of meta-d’, even when the data were generated from the same underlying parameters. However, they are centred around the generated value, and do not appear to be biased towards being too high or too low.</p>
+</div>
+<div class="highlight-{Exercise notranslate"><div class="highlight"><pre><span></span>Drop the trial numbers (Ntrials) per simulation down to just 100, and re-run the simulation and recovery procedure you just performed. What happens to the recovered values of meta-d with lower numbers of trials per subject? Do you think this may or may not be a problem? Feel free to try other trial numbers if you are interested.
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="1-What%20metacognition%20looks%20like.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">What metacognition looks like?</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="3-Comparison%20with%20the%20hmeta-d%20toolbox.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Single subject</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calculating-metacognition-the-type-2-roc-curve">Calculating metacognition: the type-2 ROC curve</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#set-up-the-parameters">Set up the parameters</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simulate-the-responses-for-low-and-high-confidence-noise">Simulate the responses for low and high confidence noise</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-the-confidence-results-for-the-two-simulations">Plot the confidence results for the two simulations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#now-plot-the-observed-type2-data-in-a-type2roc-curve">Now plot the observed type2 data in a type2ROC curve</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fitting-the-model-meta-d">Fitting the model: meta-d’</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fitting-the-model-parameter-recovery">Fitting the model: parameter recovery</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Set up the parameters</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simulate-the-responses-and-fit-the-model-for-different-levels-of-metacognition">Simulate the responses and fit the model for different levels of metacognition</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+
+  <div class="tocsection sourcelink">
+    <a href="../_sources/examples/2-Fitting the model-MLE.ipynb.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=bd9e20870c6007c4c509"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=bd9e20870c6007c4c509"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2022-2024, Nicolas Legrand.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.15.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

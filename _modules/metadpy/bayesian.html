@@ -1,0 +1,1116 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>metadpy.bayesian &#8212; metadpy 0.1.2 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=bd9e20870c6007c4c509" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=bd9e20870c6007c4c509" />
+  <script src="../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=bd9e20870c6007c4c509"></script>
+
+    <script src="../../_static/documentation_options.js?v=92734c54"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/metadpy/bayesian';</script>
+    <link rel="icon" href="../../_static/logo.svg"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <header>
+  
+    <div class="bd-header navbar navbar-expand-lg bd-navbar">
+<div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+    <span class="fa-solid fa-bars"></span>
+  </label>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.svg" class="logo__image only-light" alt=""/>
+    <script>document.write(`<img src="../../_static/logo.svg" class="logo__image only-dark" alt=""/>`);</script>
+  
+  
+    <p class="title logo__title">metadpy</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav class="navbar-nav">
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../api.html">
+                        API
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../tutorials.html">
+                        Tutorials
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../cite.html">
+                        Cite
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../references.html">
+                        References
+                      </a>
+                    </li>
+                
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/embodied-computation-group/metadpy" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fab fa-github-square fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/visceral_mind" title="Twitter" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fab fa-twitter-square fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://pypi.org/project/metadpy/" title="Pypi" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fas fa-box fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">Pypi</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+    <label class="sidebar-toggle secondary-toggle" for="__secondary" tabindex="0">
+      <span class="fa-solid fa-outdent"></span>
+    </label>
+  
+</div>
+
+    </div>
+  
+  </header>
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          <div class="navbar-item">
+<nav class="navbar-nav">
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../api.html">
+                        API
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../tutorials.html">
+                        Tutorials
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../cite.html">
+                        Cite
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../references.html">
+                        References
+                      </a>
+                    </li>
+                
+  </ul>
+</nav></div>
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/embodied-computation-group/metadpy" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fab fa-github-square fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/visceral_mind" title="Twitter" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fab fa-twitter-square fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://pypi.org/project/metadpy/" title="Pypi" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fas fa-box fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">Pypi</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumb">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../index.html" class="nav-link">Module code</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page">metadpy.bayesian</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for metadpy.bayesian</h1><div class="highlight"><pre>
+<span></span><span class="c1"># Author: Nicolas Legrand &lt;nicolas.legrand@cfin.au.dk&gt;</span>
+
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">TYPE_CHECKING</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">overload</span>
+
+<span class="kn">import</span> <span class="nn">arviz</span> <span class="k">as</span> <span class="nn">az</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">pandas_flavor</span> <span class="k">as</span> <span class="nn">pf</span>
+<span class="kn">from</span> <span class="nn">arviz</span> <span class="kn">import</span> <span class="n">InferenceData</span>
+
+<span class="kn">from</span> <span class="nn">metadpy.sdt</span> <span class="kn">import</span> <span class="n">criterion</span><span class="p">,</span> <span class="n">dprime</span>
+<span class="kn">from</span> <span class="nn">metadpy.utils</span> <span class="kn">import</span> <span class="n">discreteRatings</span><span class="p">,</span> <span class="n">trials2counts</span>
+
+<span class="k">if</span> <span class="n">TYPE_CHECKING</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">pymc.backends.base</span> <span class="kn">import</span> <span class="n">MultiTrace</span>
+    <span class="kn">from</span> <span class="nn">pymc.model</span> <span class="kn">import</span> <span class="n">Model</span>
+
+
+<span class="nd">@overload</span>
+<span class="k">def</span> <span class="nf">hmetad</span><span class="p">(</span>
+    <span class="n">data</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">nR_S1</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">],</span>
+    <span class="n">nR_S2</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">],</span>
+    <span class="n">nRatings</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span>
+    <span class="n">subject</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">within</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">nbins</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">padding</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">padAmount</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">output</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;model&quot;</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Tuple[Union[Model, Callable], Optional[Union[InferenceData, MultiTrace]]]&quot;</span><span class="p">:</span>
+    <span class="o">...</span>
+
+
+<span class="nd">@overload</span>
+<span class="k">def</span> <span class="nf">hmetad</span><span class="p">(</span>
+    <span class="n">data</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span>
+    <span class="n">stimuli</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">accuracy</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">confidence</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">nRatings</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span>
+    <span class="n">subject</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">within</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">nbins</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">padding</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">padAmount</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">output</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;model&quot;</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Tuple[Union[Model, Callable], Optional[Union[InferenceData, MultiTrace]]]&quot;</span><span class="p">:</span>
+    <span class="o">...</span>
+
+
+<span class="nd">@overload</span>
+<span class="k">def</span> <span class="nf">hmetad</span><span class="p">(</span>
+    <span class="n">data</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span>
+    <span class="n">stimuli</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">accuracy</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">confidence</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">nRatings</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span>
+    <span class="n">subject</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">within</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">nbins</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">padding</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">padAmount</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">output</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;model&quot;</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Tuple[Union[Model, Callable], Optional[Union[InferenceData, MultiTrace]]]&quot;</span><span class="p">:</span>
+    <span class="o">...</span>
+
+
+<span class="nd">@overload</span>
+<span class="k">def</span> <span class="nf">hmetad</span><span class="p">(</span>
+    <span class="n">data</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span>
+    <span class="n">stimuli</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">accuracy</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">confidence</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">nRatings</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span>
+    <span class="n">subject</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">within</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">nbins</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">padding</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">padAmount</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">sample_model</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">output</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;model&quot;</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Tuple[Union[Model, Callable], Optional[Union[InferenceData, MultiTrace]]]&quot;</span><span class="p">:</span>
+    <span class="o">...</span>
+
+
+<div class="viewcode-block" id="hmetad">
+<a class="viewcode-back" href="../../generated/bayesian/metadpy.bayesian.hmetad.html#metadpy.bayesian.hmetad">[docs]</a>
+<span class="nd">@pf</span><span class="o">.</span><span class="n">register_dataframe_method</span>
+<span class="k">def</span> <span class="nf">hmetad</span><span class="p">(</span>
+    <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">nR_S1</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">nR_S2</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">stimuli</span><span class="o">=</span><span class="s2">&quot;Stimuli&quot;</span><span class="p">,</span>
+    <span class="n">accuracy</span><span class="o">=</span><span class="s2">&quot;Accuracy&quot;</span><span class="p">,</span>
+    <span class="n">confidence</span><span class="o">=</span><span class="s2">&quot;Confidence&quot;</span><span class="p">,</span>
+    <span class="n">nRatings</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">within</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">between</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">subject</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">nbins</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+    <span class="n">padding</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">padAmount</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">sample_model</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">output</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;model&quot;</span><span class="p">,</span>
+    <span class="n">num_samples</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">,</span>
+    <span class="n">num_chains</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Bayesian meta-d&#39; model with hyperparametes at the group level.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    data :</span>
+<span class="sd">        Dataframe. Note that this function can also directly be used as a Pandas</span>
+<span class="sd">        method, in which case this argument is no longer needed.</span>
+<span class="sd">    nR_S1 :</span>
+<span class="sd">        Confience ratings (stimuli 1, correct and incorrect).</span>
+<span class="sd">    nR_S2 :</span>
+<span class="sd">        Confience ratings (stimuli 2, correct and incorrect).</span>
+<span class="sd">    stimuli :</span>
+<span class="sd">        Name of the column containing the stimuli.</span>
+<span class="sd">    accuracy :</span>
+<span class="sd">        Name of the columns containing the accuracy.</span>
+<span class="sd">    confidence :</span>
+<span class="sd">        Name of the column containing the confidence ratings.</span>
+<span class="sd">    nRatings :</span>
+<span class="sd">        Number of discrete ratings. If a continuous rating scale was used, and</span>
+<span class="sd">        the number of unique ratings does not match `nRatings`, will convert to</span>
+<span class="sd">        discrete ratings using :py:func:`metadpy.utils.discreteRatings`.</span>
+<span class="sd">    within :</span>
+<span class="sd">        Name of column containing the within factor (condition comparison).</span>
+<span class="sd">    between :</span>
+<span class="sd">        Name of column containing the between subject factor (group</span>
+<span class="sd">        comparison).</span>
+<span class="sd">    subject :</span>
+<span class="sd">        Name of column containing the subject identifier (only required if a</span>
+<span class="sd">        within-subject or a between-subject factor is provided).</span>
+<span class="sd">    nbins :</span>
+<span class="sd">        If a continuous rating scale was using, `nbins` define the number of</span>
+<span class="sd">        discrete ratings when converting using</span>
+<span class="sd">        :py:func:`metadpy.utils.discreteRatings`. The default value is `4`.</span>
+<span class="sd">    padding :</span>
+<span class="sd">        If `True`, each response count in the output has the value of padAmount</span>
+<span class="sd">        added to it. Padding cells is desirable if trial counts of 0 interfere</span>
+<span class="sd">        with model fitting. If False, trial counts are not manipulated and 0s</span>
+<span class="sd">        may be present in the response count output. Default value for padding</span>
+<span class="sd">        is `False`.</span>
+<span class="sd">    padAmount :</span>
+<span class="sd">        The value to add to each response count if padCells is set to 1.</span>
+<span class="sd">        Default value is 1/(2*nRatings)</span>
+<span class="sd">    sample_model :</span>
+<span class="sd">        If `False`, only the model is returned without sampling.</span>
+<span class="sd">    output :</span>
+<span class="sd">        The kind of outpute expected. If `&quot;model&quot;`, will return the model function and</span>
+<span class="sd">        the traces. If `&quot;dataframe&quot;`, will return a dataframe containing `d` (dprime),</span>
+<span class="sd">        `c` (criterion), `meta_d` (the meta-d prime) and `m_ratio` (`meta_d/d`).</span>
+<span class="sd">    num_samples :</span>
+<span class="sd">        The number of samples per chains to draw (defaults to `1000`).</span>
+<span class="sd">    num_chains :</span>
+<span class="sd">        The number of chains (defaults to `4`).</span>
+<span class="sd">    **kwargs : keyword arguments</span>
+<span class="sd">        All keyword arguments are passed to `func::pymc.sampling.sample`.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    If `output=&quot;model&quot;`:</span>
+
+<span class="sd">    model :</span>
+<span class="sd">        The model PyMC as a :py:class:`pymc.Model`.</span>
+<span class="sd">    traces :</span>
+<span class="sd">        A `MultiTrace` or `ArviZ InferenceData` object that contains the samples. Only</span>
+<span class="sd">        returned if `sample_model` is set to `True`, otherwise set to None.</span>
+
+<span class="sd">    or</span>
+
+<span class="sd">    results :</span>
+<span class="sd">        If `output=&quot;dataframe&quot;`, :py:class:`pandas.DataFrame` containing the values for</span>
+<span class="sd">        the following variables:</span>
+
+<span class="sd">        * d-prime (d)</span>
+<span class="sd">        * criterion (c)</span>
+<span class="sd">        * meta-d&#39; (meta_d)</span>
+<span class="sd">        * m-ratio (m_ratio)</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    1. Subject-level</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    This function will compute hierarchical Bayesian estimation of metacognitive</span>
+<span class="sd">    efficiency as described in [1]_. The model can be fitter at the subject level, at</span>
+<span class="sd">    the group level and can account for repeated measures by providing the corresponding</span>
+<span class="sd">    `subject`, `between` and `within` factors.</span>
+
+<span class="sd">    If the confidence levels have more unique values than `nRatings`, the confience</span>
+<span class="sd">    column will be discretized using py:func:`metadpy.utils.discreteRatings`.</span>
+
+<span class="sd">    Raises</span>
+<span class="sd">    ------</span>
+<span class="sd">    ValueError</span>
+<span class="sd">        When the number of ratings is not provided.</span>
+<span class="sd">        If data is None and nR_S1 or nR_S2 not provided.</span>
+<span class="sd">        If the backend is not `&quot;numpyro&quot;` or `&quot;pymc&quot;`.</span>
+
+<span class="sd">    References</span>
+<span class="sd">    ----------</span>
+<span class="sd">    .. [1] Fleming, S.M. (2017) HMeta-d: hierarchical Bayesian estimation of</span>
+<span class="sd">      metacognitive efficiency from confidence ratings, Neuroscience of</span>
+<span class="sd">      Consciousness, 3(1) nix007, https://doi.org/10.1093/nc/nix007.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">modelScript</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/models/&quot;</span>
+    <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">modelScript</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">nR_S1</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">nR_S2</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="n">nR_S1</span><span class="p">,</span> <span class="n">nR_S2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">nR_S1</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">nR_S2</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">nRatings</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">nR_S1</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">==</span> <span class="n">nRatings</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">nRatings</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">nR_S1</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
+
+    <span class="k">if</span> <span class="n">nRatings</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;You should provide the number of ratings&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">data</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">nR_S1</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">nR_S2</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;If data is None, you should provide&quot;</span>
+                <span class="s2">&quot; the nR_S1 and nR_S2 vectors instead.&quot;</span>
+            <span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">data</span><span class="p">[</span><span class="n">confidence</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span> <span class="o">&gt;</span> <span class="n">nRatings</span><span class="p">:</span>
+
+            <span class="c1"># If a continuous rating scale was used (if N unique ratings &gt; nRatings)</span>
+            <span class="c1"># transform confidence to discrete ratings</span>
+            <span class="nb">print</span><span class="p">(</span>
+                <span class="p">(</span>
+                    <span class="s2">&quot;The confidence columns contains more unique values than nRatings. &quot;</span>
+                    <span class="s2">&quot;The ratings are going to be discretized using &quot;</span>
+                    <span class="s2">&quot;metadpy.utils.discreteRatings()&quot;</span>
+                <span class="p">)</span>
+            <span class="p">)</span>
+            <span class="n">new_ratings</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">discreteRatings</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">confidence</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">(),</span> <span class="n">nbins</span><span class="o">=</span><span class="n">nbins</span><span class="p">)</span>
+            <span class="n">data</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="n">confidence</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_ratings</span>
+
+    <span class="c1">###############</span>
+    <span class="c1"># Subject level</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">within</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">between</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">subject</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">):</span>
+
+        <span class="k">if</span> <span class="n">data</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">nR_S1</span><span class="p">,</span> <span class="n">nR_S2</span> <span class="o">=</span> <span class="n">trials2counts</span><span class="p">(</span>
+                <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span>
+                <span class="n">stimuli</span><span class="o">=</span><span class="n">stimuli</span><span class="p">,</span>
+                <span class="n">accuracy</span><span class="o">=</span><span class="n">accuracy</span><span class="p">,</span>
+                <span class="n">confidence</span><span class="o">=</span><span class="n">confidence</span><span class="p">,</span>
+                <span class="n">nRatings</span><span class="o">=</span><span class="n">nRatings</span><span class="p">,</span>
+                <span class="n">padding</span><span class="o">=</span><span class="n">padding</span><span class="p">,</span>
+                <span class="n">padAmount</span><span class="o">=</span><span class="n">padAmount</span><span class="p">,</span>
+            <span class="p">)</span>
+
+        <span class="n">pymcData</span> <span class="o">=</span> <span class="n">extractParameters</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">nR_S1</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">nR_S2</span><span class="p">))</span>
+
+        <span class="kn">from</span> <span class="nn">subject_level_pymc</span> <span class="kn">import</span> <span class="n">hmetad_subjectLevel</span>
+
+        <span class="n">model_output</span> <span class="o">=</span> <span class="n">hmetad_subjectLevel</span><span class="p">(</span>
+            <span class="n">pymcData</span><span class="p">,</span>
+            <span class="n">sample_model</span><span class="o">=</span><span class="n">sample_model</span><span class="p">,</span>
+            <span class="n">num_chains</span><span class="o">=</span><span class="n">num_chains</span><span class="p">,</span>
+            <span class="n">num_samples</span><span class="o">=</span><span class="n">num_samples</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="c1">#############</span>
+    <span class="c1"># Group level</span>
+    <span class="k">elif</span> <span class="p">(</span><span class="n">within</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">between</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">subject</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">):</span>
+
+        <span class="c1"># pymcData = preprocess_group(</span>
+        <span class="c1">#     data, subject, stimuli, accuracy, confidence, nRatings</span>
+        <span class="c1"># )</span>
+
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="s2">&quot;Invalid backend provided - This model is not implemented yet.&quot;</span>
+        <span class="p">)</span>
+
+    <span class="c1">###################</span>
+    <span class="c1"># Repeated-measures</span>
+    <span class="k">elif</span> <span class="p">(</span><span class="n">within</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">between</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">subject</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">):</span>
+
+        <span class="c1"># pymcData = preprocess_rm1way(</span>
+        <span class="c1">#     data, subject, within, stimuli, accuracy, confidence, nRatings</span>
+        <span class="c1"># )</span>
+
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Invalid backend provided - This model is not implemented yet&quot;</span><span class="p">)</span>
+
+    <span class="c1">##########</span>
+    <span class="c1"># Sampling</span>
+    <span class="k">if</span> <span class="n">sample_model</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">model</span><span class="p">,</span> <span class="n">traces</span> <span class="o">=</span> <span class="n">model_output</span>
+
+        <span class="k">if</span> <span class="n">output</span> <span class="o">==</span> <span class="s2">&quot;model&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">model</span><span class="p">,</span> <span class="n">traces</span>
+        <span class="k">elif</span> <span class="n">output</span> <span class="o">==</span> <span class="s2">&quot;dataframe&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+                <span class="p">{</span>
+                    <span class="s2">&quot;d&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">pymcData</span><span class="p">[</span><span class="s2">&quot;d1&quot;</span><span class="p">]],</span>
+                    <span class="s2">&quot;c&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">pymcData</span><span class="p">[</span><span class="s2">&quot;c1&quot;</span><span class="p">]],</span>
+                    <span class="s2">&quot;meta_d&quot;</span><span class="p">:</span> <span class="p">[</span>
+                        <span class="n">az</span><span class="o">.</span><span class="n">summary</span><span class="p">(</span><span class="n">traces</span><span class="p">,</span> <span class="n">var_names</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;meta_d&quot;</span><span class="p">])[</span><span class="s2">&quot;mean&quot;</span><span class="p">][</span><span class="s2">&quot;meta_d&quot;</span><span class="p">]</span>
+                    <span class="p">],</span>
+                    <span class="s2">&quot;m_ratio&quot;</span><span class="p">:</span> <span class="p">[</span>
+                        <span class="n">az</span><span class="o">.</span><span class="n">summary</span><span class="p">(</span><span class="n">traces</span><span class="p">,</span> <span class="n">var_names</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;meta_d&quot;</span><span class="p">])[</span><span class="s2">&quot;mean&quot;</span><span class="p">][</span><span class="s2">&quot;meta_d&quot;</span><span class="p">]</span>
+                        <span class="o">/</span> <span class="n">pymcData</span><span class="p">[</span><span class="s2">&quot;d1&quot;</span><span class="p">]</span>
+                    <span class="p">],</span>
+                <span class="p">}</span>
+            <span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">model_output</span><span class="p">,</span> <span class="kc">None</span></div>
+
+
+
+<div class="viewcode-block" id="extractParameters">
+<a class="viewcode-back" href="../../generated/bayesian/metadpy.bayesian.extractParameters.html#metadpy.bayesian.extractParameters">[docs]</a>
+<span class="k">def</span> <span class="nf">extractParameters</span><span class="p">(</span>
+    <span class="n">nR_S1</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">],</span> <span class="n">nR_S2</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Extract rates and task parameters.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    nR_S1, nR_S2 :</span>
+<span class="sd">        Total number of responses in each response category, conditional on</span>
+<span class="sd">        presentation of S1 and S2. e.g. if `nR_S1 = [100 50 20 10 5 1]`, then</span>
+<span class="sd">        when stimulus S1 was presented, the subject had the following response</span>
+<span class="sd">        counts:</span>
+<span class="sd">        * responded S1, rating=3 : 100 times</span>
+<span class="sd">        * responded S1, rating=2 : 50 times</span>
+<span class="sd">        * responded S1, rating=1 : 20 times</span>
+<span class="sd">        * responded S2, rating=1 : 10 times</span>
+<span class="sd">        * responded S2, rating=2 : 5 times</span>
+<span class="sd">        * responded S2, rating=3 : 1 time</span>
+
+<span class="sd">    Return</span>
+<span class="sd">    ------</span>
+<span class="sd">    data :</span>
+<span class="sd">        Dictionary of rates and task parameters.</span>
+
+<span class="sd">    See Also</span>
+<span class="sd">    --------</span>
+<span class="sd">    hmetad</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">nR_S1</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+        <span class="n">nR_S1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">nR_S1</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">nR_S2</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+        <span class="n">nR_S2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">nR_S2</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+
+    <span class="n">Tol</span> <span class="o">=</span> <span class="mf">1e-05</span>
+    <span class="n">nratings</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">nR_S1</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+
+    <span class="c1"># Adjust to ensure non-zero counts for type 1 d&#39; point estimate</span>
+    <span class="n">adj_f</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">((</span><span class="n">nratings</span><span class="p">)</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span>
+
+    <span class="n">nR_S1_adj</span> <span class="o">=</span> <span class="n">nR_S1</span> <span class="o">+</span> <span class="n">adj_f</span>
+    <span class="n">nR_S2_adj</span> <span class="o">=</span> <span class="n">nR_S2</span> <span class="o">+</span> <span class="n">adj_f</span>
+
+    <span class="n">ratingHR</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">ratingFAR</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">nratings</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)):</span>
+        <span class="n">ratingHR</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">nR_S2_adj</span><span class="p">[</span><span class="n">c</span><span class="p">:])</span> <span class="o">/</span> <span class="nb">sum</span><span class="p">(</span><span class="n">nR_S2_adj</span><span class="p">))</span>
+        <span class="n">ratingFAR</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">nR_S1_adj</span><span class="p">[</span><span class="n">c</span><span class="p">:])</span> <span class="o">/</span> <span class="nb">sum</span><span class="p">(</span><span class="n">nR_S1_adj</span><span class="p">))</span>
+
+    <span class="n">d1</span> <span class="o">=</span> <span class="n">dprime</span><span class="p">(</span>
+        <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">stimuli</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">responses</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">hit_rate</span><span class="o">=</span><span class="n">ratingHR</span><span class="p">[</span><span class="n">nratings</span> <span class="o">-</span> <span class="mi">1</span><span class="p">],</span>
+        <span class="n">fa_rate</span><span class="o">=</span><span class="n">ratingFAR</span><span class="p">[</span><span class="n">nratings</span> <span class="o">-</span> <span class="mi">1</span><span class="p">],</span>
+    <span class="p">)</span>
+    <span class="n">c1</span> <span class="o">=</span> <span class="n">criterion</span><span class="p">(</span>
+        <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">hit_rate</span><span class="o">=</span><span class="n">ratingHR</span><span class="p">[</span><span class="n">nratings</span> <span class="o">-</span> <span class="mi">1</span><span class="p">],</span>
+        <span class="n">fa_rate</span><span class="o">=</span><span class="n">ratingFAR</span><span class="p">[</span><span class="n">nratings</span> <span class="o">-</span> <span class="mi">1</span><span class="p">],</span>
+        <span class="n">stimuli</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">responses</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">counts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">([</span><span class="n">nR_S1</span><span class="p">,</span> <span class="n">nR_S2</span><span class="p">])</span>
+
+    <span class="c1"># Type 1 counts</span>
+    <span class="n">N</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">counts</span><span class="p">[:</span> <span class="p">(</span><span class="n">nratings</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)])</span>
+    <span class="n">S</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">counts</span><span class="p">[(</span><span class="n">nratings</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span> <span class="p">:</span> <span class="p">(</span><span class="n">nratings</span> <span class="o">*</span> <span class="mi">4</span><span class="p">)])</span>
+    <span class="n">H</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">counts</span><span class="p">[(</span><span class="n">nratings</span> <span class="o">*</span> <span class="mi">3</span><span class="p">)</span> <span class="p">:</span> <span class="p">(</span><span class="n">nratings</span> <span class="o">*</span> <span class="mi">4</span><span class="p">)])</span>
+    <span class="n">M</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">counts</span><span class="p">[(</span><span class="n">nratings</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span> <span class="p">:</span> <span class="p">(</span><span class="n">nratings</span> <span class="o">*</span> <span class="mi">3</span><span class="p">)])</span>
+    <span class="n">FA</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">counts</span><span class="p">[(</span><span class="n">nratings</span><span class="p">)</span> <span class="p">:</span> <span class="p">(</span><span class="n">nratings</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)])</span>
+    <span class="n">CR</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">counts</span><span class="p">[:(</span><span class="n">nratings</span><span class="p">)])</span>
+
+    <span class="c1"># Data preparation for model</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;d1&quot;</span><span class="p">:</span> <span class="n">d1</span><span class="p">,</span>
+        <span class="s2">&quot;c1&quot;</span><span class="p">:</span> <span class="n">c1</span><span class="p">,</span>
+        <span class="s2">&quot;counts&quot;</span><span class="p">:</span> <span class="n">counts</span><span class="p">,</span>
+        <span class="s2">&quot;nratings&quot;</span><span class="p">:</span> <span class="n">nratings</span><span class="p">,</span>
+        <span class="s2">&quot;Tol&quot;</span><span class="p">:</span> <span class="n">Tol</span><span class="p">,</span>
+        <span class="s2">&quot;FA&quot;</span><span class="p">:</span> <span class="n">FA</span><span class="p">,</span>
+        <span class="s2">&quot;CR&quot;</span><span class="p">:</span> <span class="n">CR</span><span class="p">,</span>
+        <span class="s2">&quot;M&quot;</span><span class="p">:</span> <span class="n">M</span><span class="p">,</span>
+        <span class="s2">&quot;H&quot;</span><span class="p">:</span> <span class="n">H</span><span class="p">,</span>
+        <span class="s2">&quot;N&quot;</span><span class="p">:</span> <span class="n">N</span><span class="p">,</span>
+        <span class="s2">&quot;S&quot;</span><span class="p">:</span> <span class="n">S</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="n">data</span></div>
+
+
+
+<span class="c1"># TODO: when implementing group level fitting, the following wrapper will be usefull.</span>
+<span class="c1"># def preprocess_group(</span>
+<span class="c1">#     data: pd.DataFrame,</span>
+<span class="c1">#     subject: str,</span>
+<span class="c1">#     stimuli: str,</span>
+<span class="c1">#     accuracy: str,</span>
+<span class="c1">#     confidence: str,</span>
+<span class="c1">#     nRatings: int,</span>
+<span class="c1"># ) -&gt; Dict:</span>
+<span class="c1">#     &quot;&quot;&quot;Preprocess group data.</span>
+
+<span class="c1">#     Parameters</span>
+<span class="c1">#     ----------</span>
+<span class="c1">#     data : :py:class:`pandas.DataFrame` or None</span>
+<span class="c1">#         Dataframe. Note that this function can also directly be used as a</span>
+<span class="c1">#         Pandas method, in which case this argument is no longer needed.</span>
+<span class="c1">#     subject : string or None</span>
+<span class="c1">#         Name of column containing the subject identifier (only required if a</span>
+<span class="c1">#         within-subject or a between-subject factor is provided).</span>
+<span class="c1">#     stimuli : string or None</span>
+<span class="c1">#         Name of the column containing the stimuli.</span>
+<span class="c1">#     accuracy : string or None</span>
+<span class="c1">#         Name of the columns containing the accuracy.</span>
+<span class="c1">#     confidence : string or None</span>
+<span class="c1">#         Name of the column containing the confidence ratings.</span>
+<span class="c1">#     nRatings : int or None</span>
+<span class="c1">#         Number of discrete ratings. If a continuous rating scale was used, and</span>
+<span class="c1">#         the number of unique ratings does not match `nRatings`, will convert to</span>
+<span class="c1">#         discrete ratings using :py:func:`metadpy.utils.discreteRatings`.</span>
+
+<span class="c1">#     Return</span>
+<span class="c1">#     ------</span>
+<span class="c1">#     pymcData : Dict</span>
+
+<span class="c1">#     &quot;&quot;&quot;</span>
+<span class="c1">#     pymcData = {</span>
+<span class="c1">#         &quot;d1&quot;: [],</span>
+<span class="c1">#         &quot;c1&quot;: [],</span>
+<span class="c1">#         &quot;nSubj&quot;: data[subject].nunique(),</span>
+<span class="c1">#         &quot;subID&quot;: np.arange(data[subject].nunique(), dtype=&quot;int&quot;),</span>
+<span class="c1">#         &quot;hits&quot;: [],</span>
+<span class="c1">#         &quot;falsealarms&quot;: [],</span>
+<span class="c1">#         &quot;s&quot;: [],</span>
+<span class="c1">#         &quot;n&quot;: [],</span>
+<span class="c1">#         &quot;counts&quot;: [],</span>
+<span class="c1">#         &quot;nRatings&quot;: nRatings,</span>
+<span class="c1">#         &quot;Tol&quot;: 1e-05,</span>
+<span class="c1">#         &quot;cr&quot;: [],</span>
+<span class="c1">#         &quot;m&quot;: [],</span>
+<span class="c1">#     }</span>
+
+<span class="c1">#     for sub in data[subject].unique():</span>
+<span class="c1">#         nR_S1, nR_S2 = trials2counts(</span>
+<span class="c1">#             data=data[data[subject] == sub],</span>
+<span class="c1">#             stimuli=stimuli,</span>
+<span class="c1">#             accuracy=accuracy,</span>
+<span class="c1">#             confidence=confidence,</span>
+<span class="c1">#             nRatings=nRatings,</span>
+<span class="c1">#         )</span>
+
+<span class="c1">#         this_data = extractParameters(nR_S1, nR_S2)</span>
+<span class="c1">#         pymcData[&quot;d1&quot;].append(this_data[&quot;d1&quot;])</span>
+<span class="c1">#         pymcData[&quot;c1&quot;].append(this_data[&quot;c1&quot;])</span>
+<span class="c1">#         pymcData[&quot;s&quot;].append(this_data[&quot;S&quot;])</span>
+<span class="c1">#         pymcData[&quot;n&quot;].append(this_data[&quot;N&quot;])</span>
+<span class="c1">#         pymcData[&quot;m&quot;].append(this_data[&quot;M&quot;])</span>
+<span class="c1">#         pymcData[&quot;cr&quot;].append(this_data[&quot;CR&quot;])</span>
+<span class="c1">#         pymcData[&quot;counts&quot;].append(this_data[&quot;counts&quot;])</span>
+<span class="c1">#         pymcData[&quot;hits&quot;].append(this_data[&quot;H&quot;])</span>
+<span class="c1">#         pymcData[&quot;falsealarms&quot;].append(this_data[&quot;FA&quot;])</span>
+
+<span class="c1">#     pymcData[&quot;d1&quot;] = np.array(pymcData[&quot;d1&quot;], dtype=&quot;float&quot;)</span>
+<span class="c1">#     pymcData[&quot;c1&quot;] = np.array(pymcData[&quot;c1&quot;], dtype=&quot;float&quot;)</span>
+<span class="c1">#     pymcData[&quot;s&quot;] = np.array(pymcData[&quot;s&quot;], dtype=&quot;int&quot;)</span>
+<span class="c1">#     pymcData[&quot;n&quot;] = np.array(pymcData[&quot;n&quot;], dtype=&quot;int&quot;)</span>
+<span class="c1">#     pymcData[&quot;m&quot;] = np.array(pymcData[&quot;m&quot;], dtype=&quot;int&quot;)</span>
+<span class="c1">#     pymcData[&quot;cr&quot;] = np.array(pymcData[&quot;cr&quot;], dtype=&quot;int&quot;)</span>
+<span class="c1">#     pymcData[&quot;counts&quot;] = np.array(pymcData[&quot;counts&quot;], dtype=&quot;int&quot;)</span>
+<span class="c1">#     pymcData[&quot;hits&quot;] = np.array(pymcData[&quot;hits&quot;], dtype=&quot;int&quot;)</span>
+<span class="c1">#     pymcData[&quot;falsealarms&quot;] = np.array(pymcData[&quot;falsealarms&quot;], dtype=&quot;int&quot;)</span>
+<span class="c1">#     pymcData[&quot;nSubj&quot;] = data[subject].nunique()</span>
+<span class="c1">#     pymcData[&quot;subID&quot;] = np.arange(pymcData[&quot;nSubj&quot;], dtype=&quot;int&quot;)</span>
+
+<span class="c1">#     return pymcData</span>
+
+
+<span class="c1"># def preprocess_rm1way(</span>
+<span class="c1">#     data: pd.DataFrame,</span>
+<span class="c1">#     subject: str,</span>
+<span class="c1">#     stimuli: str,</span>
+<span class="c1">#     within: str,</span>
+<span class="c1">#     accuracy: str,</span>
+<span class="c1">#     confidence: str,</span>
+<span class="c1">#     nRatings: int,</span>
+<span class="c1"># ) -&gt; Dict:</span>
+<span class="c1">#     &quot;&quot;&quot;Preprocess repeated measures data.</span>
+
+<span class="c1">#     Parameters</span>
+<span class="c1">#     ----------</span>
+<span class="c1">#     data : :py:class:`pandas.DataFrame`</span>
+<span class="c1">#         Dataframe. Note that this function can also directly be used as a</span>
+<span class="c1">#         Pandas method, in which case this argument is no longer needed.</span>
+<span class="c1">#     subject : string</span>
+<span class="c1">#         Name of column containing the subject identifier (only required if a</span>
+<span class="c1">#         within-subject or a between-subject factor is provided).</span>
+<span class="c1">#     stimuli : string</span>
+<span class="c1">#         Name of the column containing the stimuli.</span>
+<span class="c1">#     within : string</span>
+<span class="c1">#         Name of column containing the within factor (condition comparison).</span>
+<span class="c1">#     accuracy : string</span>
+<span class="c1">#         Name of the columns containing the accuracy.</span>
+<span class="c1">#     confidence : string</span>
+<span class="c1">#         Name of the column containing the confidence ratings.</span>
+<span class="c1">#     nRatings : int</span>
+<span class="c1">#         Number of discrete ratings. If a continuous rating scale was used, and</span>
+<span class="c1">#         the number of unique ratings does not match `nRatings`, will convert to</span>
+<span class="c1">#         discrete ratings using :py:func:`metadpy.utils.discreteRatings`.</span>
+
+<span class="c1">#     Return</span>
+<span class="c1">#     ------</span>
+<span class="c1">#     pymcData : Dict</span>
+
+<span class="c1">#     &quot;&quot;&quot;</span>
+<span class="c1">#     pymcData = {</span>
+<span class="c1">#         &quot;nSubj&quot;: data[subject].nunique(),</span>
+<span class="c1">#         &quot;subID&quot;: [],</span>
+<span class="c1">#         &quot;nCond&quot;: data[within].nunique(),</span>
+<span class="c1">#         &quot;condition&quot;: [],</span>
+<span class="c1">#         &quot;hits&quot;: [],</span>
+<span class="c1">#         &quot;falsealarms&quot;: [],</span>
+<span class="c1">#         &quot;s&quot;: [],</span>
+<span class="c1">#         &quot;n&quot;: [],</span>
+<span class="c1">#         &quot;nRatings&quot;: nRatings,</span>
+<span class="c1">#         &quot;Tol&quot;: 1e-05,</span>
+<span class="c1">#         &quot;cr&quot;: [],</span>
+<span class="c1">#         &quot;m&quot;: [],</span>
+<span class="c1">#     }</span>
+<span class="c1">#     pymcData[&quot;counts&quot;] = np.zeros(</span>
+<span class="c1">#         (pymcData[&quot;nSubj&quot;], pymcData[&quot;nCond&quot;], pymcData[&quot;nRatings&quot;] * 4)</span>
+<span class="c1">#     )</span>
+<span class="c1">#     pymcData[&quot;hits&quot;] = np.zeros((pymcData[&quot;nSubj&quot;], pymcData[&quot;nCond&quot;]))</span>
+<span class="c1">#     pymcData[&quot;falsealarms&quot;] = np.zeros((pymcData[&quot;nSubj&quot;], pymcData[&quot;nCond&quot;]))</span>
+<span class="c1">#     pymcData[&quot;s&quot;] = np.zeros((pymcData[&quot;nSubj&quot;], pymcData[&quot;nCond&quot;]))</span>
+<span class="c1">#     pymcData[&quot;n&quot;] = np.zeros((pymcData[&quot;nSubj&quot;], pymcData[&quot;nCond&quot;]))</span>
+<span class="c1">#     pymcData[&quot;m&quot;] = np.zeros((pymcData[&quot;nSubj&quot;], pymcData[&quot;nCond&quot;]))</span>
+<span class="c1">#     pymcData[&quot;cr&quot;] = np.zeros((pymcData[&quot;nSubj&quot;], pymcData[&quot;nCond&quot;]))</span>
+<span class="c1">#     pymcData[&quot;condition&quot;] = np.zeros((pymcData[&quot;nSubj&quot;], pymcData[&quot;nCond&quot;]))</span>
+<span class="c1">#     pymcData[&quot;subID&quot;] = np.zeros((pymcData[&quot;nSubj&quot;], pymcData[&quot;nCond&quot;]))</span>
+<span class="c1">#     pymcData[&quot;c1&quot;] = np.zeros((pymcData[&quot;nSubj&quot;], pymcData[&quot;nCond&quot;]))</span>
+<span class="c1">#     pymcData[&quot;d1&quot;] = np.zeros((pymcData[&quot;nSubj&quot;], pymcData[&quot;nCond&quot;]))</span>
+
+<span class="c1">#     for nSub, sub in enumerate(data[subject].unique()):</span>
+<span class="c1">#         for nCond, cond in enumerate(data[within].unique()):</span>
+<span class="c1">#             nR_S1, nR_S2 = trials2counts(</span>
+<span class="c1">#                 data=data[(data[subject] == sub) &amp; (data[within] == cond)],</span>
+<span class="c1">#                 stimuli=stimuli,</span>
+<span class="c1">#                 accuracy=accuracy,</span>
+<span class="c1">#                 confidence=confidence,</span>
+<span class="c1">#                 nRatings=nRatings,</span>
+<span class="c1">#             )</span>
+
+<span class="c1">#             this_data = extractParameters(nR_S1, nR_S2)</span>
+<span class="c1">#             pymcData[&quot;subID&quot;][nSub, nCond] = nSub</span>
+<span class="c1">#             pymcData[&quot;condition&quot;][nSub, nCond] = nCond</span>
+<span class="c1">#             pymcData[&quot;s&quot;][nSub, nCond] = this_data[&quot;S&quot;]</span>
+<span class="c1">#             pymcData[&quot;n&quot;][nSub, nCond] = this_data[&quot;N&quot;]</span>
+<span class="c1">#             pymcData[&quot;m&quot;][nSub, nCond] = this_data[&quot;M&quot;]</span>
+<span class="c1">#             pymcData[&quot;cr&quot;][nSub, nCond] = this_data[&quot;CR&quot;]</span>
+<span class="c1">#             pymcData[&quot;hits&quot;][nSub, nCond] = this_data[&quot;H&quot;]</span>
+<span class="c1">#             pymcData[&quot;falsealarms&quot;][nSub, nCond] = this_data[&quot;FA&quot;]</span>
+<span class="c1">#             pymcData[&quot;c1&quot;][nSub, nCond] = this_data[&quot;c1&quot;]</span>
+<span class="c1">#             pymcData[&quot;d1&quot;][nSub, nCond] = this_data[&quot;d1&quot;]</span>
+<span class="c1">#             pymcData[&quot;counts&quot;][nSub, nCond, :] = this_data[&quot;counts&quot;]</span>
+
+<span class="c1">#     pymcData[&quot;subID&quot;] = np.array(pymcData[&quot;subID&quot;], dtype=&quot;int&quot;)</span>
+<span class="c1">#     pymcData[&quot;condition&quot;] = np.array(pymcData[&quot;condition&quot;], dtype=&quot;int&quot;)</span>
+<span class="c1">#     pymcData[&quot;s&quot;] = np.array(pymcData[&quot;s&quot;], dtype=&quot;int&quot;)</span>
+<span class="c1">#     pymcData[&quot;n&quot;] = np.array(pymcData[&quot;n&quot;], dtype=&quot;int&quot;)</span>
+<span class="c1">#     pymcData[&quot;m&quot;] = np.array(pymcData[&quot;m&quot;], dtype=&quot;int&quot;)</span>
+<span class="c1">#     pymcData[&quot;cr&quot;] = np.array(pymcData[&quot;cr&quot;], dtype=&quot;int&quot;)</span>
+<span class="c1">#     pymcData[&quot;counts&quot;] = np.array(pymcData[&quot;counts&quot;], dtype=&quot;int&quot;)</span>
+<span class="c1">#     pymcData[&quot;hits&quot;] = np.array(pymcData[&quot;hits&quot;], dtype=&quot;int&quot;)</span>
+<span class="c1">#     pymcData[&quot;falsealarms&quot;] = np.array(pymcData[&quot;falsealarms&quot;], dtype=&quot;int&quot;)</span>
+
+<span class="c1">#     return pymcData</span>
+</pre></div>
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=bd9e20870c6007c4c509"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=bd9e20870c6007c4c509"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2022-2024, Nicolas Legrand.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.15.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>
