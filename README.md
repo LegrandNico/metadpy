@@ -1,15 +1,19 @@
-[![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit) [![license](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://github.com/embodied-computation-group/metadpy/blob/master/LICENSE) [![codecov](https://codecov.io/gh/embodied-computation-group/metadpy/branch/master/graph/badge.svg)](https://codecov.io/gh/embodied-computation-group/metadpy) [![black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black) [![mypy](http://www.mypy-lang.org/static/mypy_badge.svg)](http://mypy-lang.org/) [![Imports: isort](https://img.shields.io/badge/%20imports-isort-%231674b1?style=flat&labelColor=ef8336)](https://pycqa.github.io/isort/) [![pip](https://badge.fury.io/py/metadpy.svg)](https://badge.fury.io/py/metadpy)
+[![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit) [![license](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://github.com/LegrandNico/metadpy/blob/master/LICENSE) [![codecov](https://codecov.io/gh/LegrandNico/metadpy/branch/master/graph/badge.svg)](https://codecov.io/gh/LegrandNico/metadpy) [![black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black) [![mypy](http://www.mypy-lang.org/static/mypy_badge.svg)](http://mypy-lang.org/) [![Imports: isort](https://img.shields.io/badge/%20imports-isort-%231674b1?style=flat&labelColor=ef8336)](https://pycqa.github.io/isort/) [![pip](https://badge.fury.io/py/metadpy.svg)](https://badge.fury.io/py/metadpy)
 
 ***
 
-<img src="https://github.com/embodied-computation-group/metadpy/raw/master/docs/source/images/logo.png" align="left" alt="metadpy" height="250" HSPACE=30>
+> [!NOTE]
+> This repository hosts the development and maintenance of [metadpy](https://pypi.org/project/metadpy/) starting from v0.1.2. For earlier versions of the package please refer to [this repository](https://github.com/LegrandNico/metadpy/).
+
+
+<img src="https://github.com/LegrandNico/metadpy/raw/master/docs/source/images/logo.png" align="left" alt="metadpy" height="200" HSPACE=30>
 
 **metadpy** is a Python implementation of standard Bayesian models of behavioural metacognition. It is aimed to provide simple yet powerful functions to compute standard indexes and metrics of signal detection theory (SDT) and metacognitive efficiency (meta-d’ and hierarchical meta-d’). The only input required is a data frame encoding task performances and confidence ratings at the trial level.
 
 **metadpy** is written in Python 3. It uses [Numpy](https://numpy.org/), [Scipy](https://www.scipy.org/) and [Pandas](https://pandas.pydata.org/>) for most of its operation, comprizing meta-d’ estimation using maximum likelihood estimation (MLE). The (Hierarchical) Bayesian modelling is implemented in [Aesara](https://github.com/aesara-devs/aesara) (now renamed [PyTensor](https://github.com/pymc-devs/pytensor) for versions of [pymc](https://docs.pymc.io/>) >=5.0).
 
-* 📖 [Documentation](https://embodied-computation-group.github.io/metadpy/)  
-* ✏️ [Tutorials](https://embodied-computation-group.github.io/metadpy/tutorials.html)  
+* 📖 [Documentation](https://LegrandNico.github.io/metadpy/)  
+* ✏️ [Tutorials](https://LegrandNico.github.io/metadpy/tutorials.html)  
 
 # Installation
 
@@ -45,16 +49,16 @@ For an extensive introduction to metadpy, you can navigate the following noteboo
 
 | Notebook | Colab |
 | --- | ---|
-| What metacognition looks like? | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/embodied-computation-group/metadpy/blob/master/docs/source/examples/1-What%20metacognition%20looks%20like.ipynb)
-| Fitting the model (MLE) | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/embodied-computation-group/metadpy/blob/master/docs/source/examples/2-Fitting%20the%20model-MLE.ipynb)
-| Comparing with the hmetad toolbox | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/embodied-computation-group/metadpy/blob/master/docs/source/examples/3-Comparison%20with%20the%20hmeta-d%20toolbox.ipynb)
+| What metacognition looks like? | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/LegrandNico/metadpy/blob/master/docs/source/examples/1-What%20metacognition%20looks%20like.ipynb)
+| Fitting the model (MLE) | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/LegrandNico/metadpy/blob/master/docs/source/examples/2-Fitting%20the%20model-MLE.ipynb)
+| Comparing with the hmetad toolbox | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/LegrandNico/metadpy/blob/master/docs/source/examples/3-Comparison%20with%20the%20hmeta-d%20toolbox.ipynb)
 
 # Examples
 
 | Notebook | Colab |
 | --- | ---|
-| Subject and group level (MLE) | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/embodied-computation-group/metadpy/blob/master/docs/source/examples/Example%201%20-%20Fitting%20MLE%20-%20Subject%20and%20group%20level.ipynb)
-| Subject and group level (Bayesian) | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/embodied-computation-group/metadpy/blob/master/docs/source/examples/Example%202%20-%20Fitting%20Bayesian%20-%20Subject%20level%20(pymc).ipynb)
+| Subject and group level (MLE) | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/LegrandNico/metadpy/blob/master/docs/source/examples/Example%201%20-%20Fitting%20MLE%20-%20Subject%20and%20group%20level.ipynb)
+| Subject and group level (Bayesian) | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/LegrandNico/metadpy/blob/master/docs/source/examples/Example%202%20-%20Fitting%20Bayesian%20-%20Subject%20level%20(pymc).ipynb)
 
 Or just follow the quick tour below.
 

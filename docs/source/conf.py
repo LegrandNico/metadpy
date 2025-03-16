@@ -86,7 +86,7 @@ html_theme_options = {
     "icon_links": [
         dict(
             name="GitHub",
-            url="https://github.com/embodied-computation-group/metadpy",
+            url="https://github.com/LegrandNico/metadpy",
             icon="fab fa-github-square",
         ),
         dict(

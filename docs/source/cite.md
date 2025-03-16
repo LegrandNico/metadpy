@@ -1,6 +1,6 @@
 # How to cite?
 
-If you are using [metadpy](https://github.com/embodied-computation-group/metadpy) for your research, we ask you to cite the GitHub repository in the final publication.
+If you are using [metadpy](https://github.com/LegrandNico/metadpy) for your research, we ask you to cite the GitHub repository in the final publication.
 
 If you are using the Bayesian models, you might also refer to the original publication:
 

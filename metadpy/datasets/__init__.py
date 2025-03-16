@@ -19,7 +19,7 @@ def load_dataset(dataset):
     """
     return pd.read_csv(
         (
-            "https://raw.githubusercontent.com/embodied-computation-group/metadpy/"
+            "https://raw.githubusercontent.com/LegrandNico/metadpy/"
             "master/metadpy/datasets/rm.txt"
         )
     )
