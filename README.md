@@ -6,7 +6,7 @@
 > This repository hosts the development and maintenance of [metadpy](https://pypi.org/project/metadpy/) starting from v0.1.2. For earlier versions of the package please refer to [this repository](https://github.com/LegrandNico/metadpy/).
 
 
-<img src="https://github.com/LegrandNico/metadpy/raw/master/docs/source/images/logo.png" align="left" alt="metadpy" height="220" HSPACE=30>
+<img src="https://github.com/LegrandNico/metadpy/raw/master/docs/source/images/logo.png" align="left" alt="metadpy" height="200" HSPACE=30>
 
 **metadpy** is a Python implementation of standard Bayesian models of behavioural metacognition. It is aimed to provide simple yet powerful functions to compute standard indexes and metrics of signal detection theory (SDT) and metacognitive efficiency (meta-d’ and hierarchical meta-d’). The only input required is a data frame encoding task performances and confidence ratings at the trial level.
 
