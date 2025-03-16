@@ -55,7 +55,7 @@ metadpy first aims to be the Python equivalent of the [hMeta-d toolbox](https://
 
 For an extensive introduction to metadpy, you can navigate the following notebooks that are Python adaptations of the introduction to the [hMeta-d toolbox](https://github.com/metacoglab/HMeta-d) written in Matlab by Olivia Faul for the [Zurich Computational Psychiatry course](https://github.com/metacoglab/HMeta-d/tree/master/CPC_metacog_tutorial).
 
-✏️ [Tutorials and examples](https://embodied-computation-group.github.io/metadpy/tutorials.html)
+✏️ [Tutorials and examples](https://LegrandNico.github.io/metadpy/tutorials.html)
 
 +++ {"id": "w0EklNnNf6Ms"}
 
@@ -278,7 +278,7 @@ outputId: d817b6e0-951e-454b-f614-4fc7890d3736
 az.summary(trace, var_names=["meta_d", "cS2", "cS1"])
 ```
 
-<img src = "https://raw.githubusercontent.com/embodied-computation-group/metadpy/master/docs/source/images/LabLogo.png" height ="100"><img src = "https://raw.githubusercontent.com/embodied-computation-group/metadpy/master/docs/source/images/AU.png" height ="100">
+<img src = "https://raw.githubusercontent.com/LegrandNico/metadpy/master/docs/source/images/LabLogo.png" height ="100"><img src = "https://raw.githubusercontent.com/LegrandNico/metadpy/master/docs/source/images/AU.png" height ="100">
 
 ```{toctree}
 ---
