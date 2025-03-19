@@ -3,7 +3,7 @@
 ***
 
 > [!NOTE]
-> This repository hosts the development and maintenance of [metadpy](https://pypi.org/project/metadpy/) starting from v0.1.2. For earlier versions of the package please refer to [this repository](https://github.com/LegrandNico/metadpy/).
+> This repository hosts the development and maintenance of [metadpy](https://pypi.org/project/metadpy/) starting from v0.1.2. For earlier versions of the package please refer to [this repository](https://github.com/embodied-computation-group/metadpy).
 
 
 <img src="https://github.com/LegrandNico/metadpy/raw/master/docs/source/images/logo.png" align="left" alt="metadpy" height="200" HSPACE=30>
